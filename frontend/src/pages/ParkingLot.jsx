@@ -230,7 +230,7 @@ const ParkingLot = () => {
               <div className="flex flex-col items-center gap-2">
 
                 {/* Top edge - 12 spots (last 4 handicapped) */}
-                <div className="flex gap-1 mb-2">
+                <div className="flex gap-1 mb-2  ml-9 self-start w-fit">
                   <PerimeterSpots
                     spots={['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'H1', 'H2', 'H3', 'H4']}
                     direction="horizontal"
