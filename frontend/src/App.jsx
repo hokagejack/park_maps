@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './pages/Layout.jsx';
-import Dashboard from './pages/Dashboard.jsx';
+import ParkingLot from './pages/ParkingLot';
+import Dashboard from './pages/Dashboard';
+import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />} />
+        <Route path="/" element={<ParkingLot />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>

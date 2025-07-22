@@ -48,7 +48,7 @@ const ParkingLot = () => {
     });
 
     // Add one occupied spot for demo
-    spots['B1-5'] = { occupied: true, student: 'Sarah Williams' };
+    spots['B1-5'] = { occupied: true, student: 'Nathan Williams' };
 
     setParkingSpots(spots);
 
@@ -56,23 +56,23 @@ const ParkingLot = () => {
     const mockReadyStudents = [
       {
         id: 3,
-        name: 'Mike Johnson',
-        email: 'mike.johnson@school.edu',
+        name: 'Mike Grant',
+        email: 'mike.grant22@mba.edu',
         grade: '12',
         vehicleInfo: { make: 'Honda', model: 'Civic', year: '2020', color: 'Blue', plate: 'ABC123' }
       },
       {
         id: 5,
-        name: 'Emily Davis',
-        email: 'emily.davis@school.edu',
-        grade: '11',
+        name: 'Ben McSween',
+        email: 'ben.mcsween22@mba.edu',
+        grade: '12',
         vehicleInfo: { make: 'Ford', model: 'Focus', year: '2021', color: 'White', plate: 'DEF456' }
       },
       {
         id: 6,
-        name: 'Chris Wilson',
-        email: 'chris.wilson@school.edu',
-        grade: '12',
+        name: 'Luke Keller',
+        email: 'luke.keller24@mba.edu',
+        grade: '10',
         vehicleInfo: { make: 'Nissan', model: 'Altima', year: '2019', color: 'Gray', plate: 'GHI789' }
       }
     ];

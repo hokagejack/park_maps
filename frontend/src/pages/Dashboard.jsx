@@ -11,8 +11,8 @@ const Dashboard = () => {
     const mockStudents = [
       {
         id: 1,
-        name: 'John Doe',
-        email: 'john.doe@school.edu',
+        name: 'Sam Elasy',
+        email: 'sam.elasy22@mba.edu',
         grade: '12',
         status: 'not-started',
         forms: {
@@ -26,9 +26,9 @@ const Dashboard = () => {
       },
       {
         id: 2,
-        name: 'Jane Smith',
-        email: 'jane.smith@school.edu',
-        grade: '11',
+        name: 'Reid Smith',
+        email: 'reid.smith22@mba.edu',
+        grade: '12',
         status: 'in-progress',
         forms: {
           driverLicense: 'uploaded',
@@ -41,8 +41,8 @@ const Dashboard = () => {
       },
       {
         id: 3,
-        name: 'Mike Johnson',
-        email: 'mike.johnson@school.edu',
+        name: 'Mike Grant',
+        email: 'mike.grant22@mba.edu',
         grade: '12',
         status: 'ready',
         forms: {
@@ -56,9 +56,9 @@ const Dashboard = () => {
       },
       {
         id: 4,
-        name: 'Sarah Williams',
-        email: 'sarah.williams@school.edu',
-        grade: '11',
+        name: 'Nathan Williams',
+        email: 'nathan.williams24@mba.edu',
+        grade: '10',
         status: 'assigned',
         forms: {
           driverLicense: 'uploaded',
@@ -68,7 +68,22 @@ const Dashboard = () => {
         },
         vehicleInfo: { make: 'Toyota', model: 'Camry', year: '2019', color: 'Red', plate: 'XYZ789' },
         parkingSpot: 'A15'
+      },
+      {
+        id: 5,
+        name: 'Ben McSween',
+        email: 'ben.mcsween22@mba.edu',
+        grade: '12',
+        vehicleInfo: { make: 'Ford', model: 'Focus', year: '2021', color: 'White', plate: 'DEF456' }
+      },
+      {
+        id: 6,
+        name: 'Luke Keller',
+        email: 'luke.keller24@mba.edu',
+        grade: '10',
+        vehicleInfo: { make: 'Nissan', model: 'Altima', year: '2019', color: 'Gray', plate: 'GHI789' }
       }
+
     ];
     setStudents(mockStudents);
   }, []);
@@ -212,7 +227,7 @@ const Dashboard = () => {
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900">Student Parking Management</h1>
             <button
-              onClick={() => window.location.href = '/parking-lot'}
+              onClick={() => window.location.href = '/'}
               className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"
             >
               <Car size={16} />
