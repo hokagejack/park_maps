@@ -74,14 +74,30 @@ const Dashboard = () => {
         name: 'Ben McSween',
         email: 'ben.mcsween22@mba.edu',
         grade: '12',
-        vehicleInfo: { make: 'Ford', model: 'Focus', year: '2021', color: 'White', plate: 'DEF456' }
+        status: 'ready',
+        forms: {
+          driverLicense: 'uploaded',
+          insurance: 'uploaded',
+          vehicleRegistration: 'uploaded',
+          parentPermission: 'uploaded'
+        },
+        vehicleInfo: { make: 'Ford', model: 'Focus', year: '2021', color: 'White', plate: 'DEF456' },
+        parkingSpot: null
       },
       {
         id: 6,
         name: 'Luke Keller',
         email: 'luke.keller24@mba.edu',
         grade: '10',
-        vehicleInfo: { make: 'Nissan', model: 'Altima', year: '2019', color: 'Gray', plate: 'GHI789' }
+        status: 'ready',
+        forms: {
+          driverLicense: 'uploaded',
+          insurance: 'uploaded',
+          vehicleRegistration: 'uploaded',
+          parentPermission: 'uploaded'
+        }, 
+        vehicleInfo: { make: 'Nissan', model: 'Altima', year: '2019', color: 'Gray', plate: 'GHI789' },
+        parkingSpot: null
       }
 
     ];
@@ -132,11 +148,14 @@ const Dashboard = () => {
       vehicleRegistration: "Vehicle Registration",
       parentPermission: "Parent Permission"
     };
-    return labels[formKey];
+    return labels[formKey] || formKey;
   };
 
   const StudentCard = ({ student }) => {
     const [expanded, setExpanded] = useState(false);
+
+    // Show details button for students who need to submit forms (not-started or in-progress)
+    const showDetailsButton = student.status === 'not-started' || student.status === 'in-progress';
 
     return (
       <div className="bg-white rounded-lg shadow-sm border p-4 mb-3">
@@ -145,7 +164,7 @@ const Dashboard = () => {
             <User size={16} className="text-gray-500" />
             <h3 className="font-medium text-gray-900">{student.name}</h3>
           </div>
-          {student.status === 'in-progress' && (
+          {showDetailsButton && (
             <button
               onClick={() => setExpanded(!expanded)}
               className="text-blue-600 hover:text-blue-800 text-sm"
@@ -184,29 +203,38 @@ const Dashboard = () => {
           </div>
         )}
 
-        {(student.status === 'in-progress' && expanded) && (
-          <div className="space-y-2">
-            {Object.entries(student.forms).map(([formKey, status]) => (
-              <div key={formKey} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                <div className="flex items-center gap-2">
-                  {status === 'uploaded' ? (
-                    <CheckCircle size={16} className="text-green-500" />
-                  ) : (
-                    <AlertCircle size={16} className="text-orange-500" />
+        {/* Show details for both not-started and in-progress students when expanded */}
+        {showDetailsButton && expanded && (
+          <div className="space-y-2 mt-3 border-t pt-3">
+            <h4 className="text-sm font-medium text-gray-700 mb-2">Required Documents:</h4>
+            {Object.entries(student.forms).map(([formKey, status]) => {
+              const formLabel = getFormLabel(formKey);
+              console.log('FormKey:', formKey, 'Label:', formLabel, 'Status:', status);
+              return (
+                <div key={formKey} className="flex items-center justify-between p-3 bg-white rounded border">
+                  <div className="flex items-center gap-2">
+                    {status === 'uploaded' ? (
+                      <CheckCircle size={16} className="text-green-500" />
+                    ) : (
+                      <AlertCircle size={16} className="text-orange-500" />
+                    )}
+                    <span className="text-sm font-medium text-gray-900">{formLabel}</span>
+                    <span className="text-xs text-gray-600">
+                      {status === 'uploaded' ? '✓ Uploaded' : '○ Pending'}
+                    </span>
+                  </div>
+                  {status !== 'uploaded' && (
+                    <button
+                      onClick={() => handleFileUpload(student.id, formKey)}
+                      className="text-xs bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-600 flex items-center gap-1"
+                    >
+                      <Upload size={12} />
+                      Upload
+                    </button>
                   )}
-                  <span className="text-sm">{getFormLabel(formKey)}</span>
                 </div>
-                {status !== 'uploaded' && (
-                  <button
-                    onClick={() => handleFileUpload(student.id, formKey)}
-                    className="text-xs bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 flex items-center gap-1"
-                  >
-                    <Upload size={12} />
-                    Upload
-                  </button>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -221,9 +249,20 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div 
+      className="bg-white overflow-auto"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        margin: 0,
+        padding: 0
+      }}
+    >
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="w-full px-4 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900">Student Parking Management</h1>
             <button
@@ -237,8 +276,8 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="w-full px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 w-full">
           {/* Not Started / In Progress Column */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-sm border">

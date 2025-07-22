@@ -179,7 +179,16 @@ const ParkingLot = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-white overflow-auto"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        margin: 0,
+        padding: 0
+      }}>
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -229,7 +238,7 @@ const ParkingLot = () => {
                 </div>
 
                 {/* Main area with left edge, blocks, and right edge */}
-                <div className="flex items-start gap-2">
+                <div className="flex items-start gap-10">
 
                   {/* Left edge - 20 spots */}
                   <div className="flex flex-col gap-1">
@@ -240,21 +249,21 @@ const ParkingLot = () => {
                   </div>
 
                   {/* Central blocks area */}
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col">
                     {/* First row: B and C blocks */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-20 mb-10 mt-10 ml-5 mr-5">
                       <ParkingBlock prefix="B" rows={2} cols={10} />
                       <ParkingBlock prefix="C" rows={2} cols={10} />
                     </div>
 
                     {/* Second row: D and E blocks */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-20 mb-15, mt-10 ml-5 mr-5">
                       <ParkingBlock prefix="D" rows={2} cols={10} />
                       <ParkingBlock prefix="E" rows={2} cols={10} />
                     </div>
 
                     {/* Third row: F and G blocks */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-20 mt-20 ml-5 mr-5">
                       <ParkingBlock prefix="F" rows={2} cols={10} />
                       <ParkingBlock prefix="G" rows={2} cols={10} />
                     </div>
