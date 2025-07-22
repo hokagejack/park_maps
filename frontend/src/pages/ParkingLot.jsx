@@ -124,7 +124,7 @@ const ParkingLot = () => {
       >
         {spot.handicapped && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white text-lg font-bold">♿</span>
+            <span className="text-white text-lg font-bold">H</span>
           </div>
         )}
         {!spot.handicapped && displayText}
@@ -409,7 +409,7 @@ const ParkingLot = () => {
               </div>
               <p className="text-sm text-red-700">This spot is currently occupied.</p>
               {parkingSpots[selectedSpot]?.handicapped && (
-                <p className="text-sm text-blue-700 mt-1">♿ Handicapped accessible spot</p>
+                <p className="text-sm text-blue-700 mt-1">Handicapped accessible spot</p>
               )}
             </div>
 
